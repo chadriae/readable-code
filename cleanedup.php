@@ -1,57 +1,50 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 function orderPizza($pizzatype, $forWho)
 {
-    $address = findAddress($forWho);
-    $totalPrice = calculateCost($pizzatype);
+    $address = getAddress($forWho);
+    $totalPrice = getPrice($pizzatype);
 
     echo 'Creating new order... <br>';
-    echo  'A ' . $pizzatype . ' pizza should be sent to ' . $forWho . '.';
+    echo  "A {$pizzatype} pizza should be sent to {$forWho}.";
     echo '<br>';
-    echo 'The address: ' . $address;
+    echo "The address: {$address}";
     echo '<br>';
-    echo 'The bill is €' . $totalPrice . '.<br>';
+    echo "The bill is €{$totalPrice}.<br>";
     echo 'Order finished.<br><br>';
 }
 
-function findAddress($forWho)
+function getAddress($forWho)
 {
     $address = 'unknown';
     if ($forWho == 'koen') {
         $address = 'a yacht in Antwerp';
-        return $address;
     } elseif ($forWho == 'manuele') {
         $address = 'somewhere in Belgium';
-        return $address;
     } elseif ($forWho == 'students') {
         $address = 'BeCode office';
-        return $address;
     }
+    return $address;
 }
 
-function calculateCost($pizzaType)
+function getPrice($pizzaType)
 {
-    $cost = 0;
     switch ($pizzaType) {
         case 'marguerita':
-            $cost = 5;
-            return $cost;
-            break;
+            return 5;
         case 'golden':
-            $cost = 100;
-            return $cost;
-            break;
+            return 100;
         case 'calzone':
-            $cost = 10;
-            return $cost;
-            break;
+            return 10;
         case 'hawai':
             throw new Exception('Computer says no');
-            break;
     }
 }
 
-function make_Allhappy($do_it)
+function makeAllhappy($do_it)
 {
     if ($do_it) {
         orderPizza('calzone', 'koen');
@@ -60,4 +53,4 @@ function make_Allhappy($do_it)
     }
 }
 
-make_Allhappy(true);
+makeAllhappy(true);
