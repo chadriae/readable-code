@@ -2,6 +2,7 @@
 // Things I changed:
 // 1. renamed all functions and variables
 // 2. got rid of all dead and test code
+// 3. switch operator in stead of if else statements
 
 function orderPizza($pizzatype, $forWho)
 {
@@ -29,23 +30,24 @@ function orderPizza($pizzatype, $forWho)
 
 function calculateCost($pizzaType)
 {
-    $cost = 'unknown';
-    if ($pizzaType == 'marguerita') {
-        $cost = 5;
-    } else {
-        if ($pizzaType == 'golden') {
+    $cost = 0;
+    switch ($pizzaType) {
+        case 'marguerita':
+            $cost = 5;
+            return $cost;
+            break;
+        case 'golden':
             $cost = 100;
-        }
-
-        if ($pizzaType == 'calzone') {
+            return $cost;
+            break;
+        case 'calzone':
             $cost = 10;
-        }
-
-        if ($pizzaType == 'hawai') {
+            return $cost;
+            break;
+        case 'hawai':
             throw new Exception('Computer says no');
-        }
+            break;
     }
-    return $cost;
 }
 
 function orderPizzaAll()
