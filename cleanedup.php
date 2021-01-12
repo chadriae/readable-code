@@ -1,10 +1,4 @@
 <?php
-// Things I changed:
-// 1. renamed all functions and variables
-// 2. got rid of all dead and test code
-// 3. switch operator in stead of if else statements
-// 4. seperate function to determine address
-// 5. just one function to make everyone happy
 
 function orderPizza($pizzatype, $forWho)
 {
