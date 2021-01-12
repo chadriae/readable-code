@@ -1,15 +1,14 @@
+<?php
 // Things I changed:
 // 1. renamed all functions and variables
+// 2. got rid of all dead and test code
 
-<?php
-
-// fw = for who
 function orderPizza($pizzatype, $forWho)
 {
     echo 'Creating new order... <br>';
     $toPrint = 'A ';
     $toPrint .= $pizzatype;
-    $p = calculateCost($pizzatype);
+    $totalPrice = calculateCost($pizzatype);
 
     $address = 'unknown';
     if ($forWho == 'koen') {
@@ -23,19 +22,10 @@ function orderPizza($pizzatype, $forWho)
     $toPrint .=   ' pizza should be sent to ' . $forWho . ". <br>The address: {$address}.";
     echo $toPrint;
     echo '<br>';
-    echo 'The bill is €' . $p . '.<br>';
+    echo 'The bill is €' . $totalPrice . '.<br>';
     echo "Order finished.<br><br>";
 }
 
-function total_price($p)
-{
-    return $p;
-}
-
-function test($p_type)
-{
-    echo "Test: type is {$p_type}. <br>";
-}
 
 function calculateCost($pizzaType)
 {
@@ -69,8 +59,6 @@ function make_Allhappy($do_it)
 {
     if ($do_it) {
         orderPizzaAll();
-    } else {
-        // Should not do anything when false
     }
 }
 
