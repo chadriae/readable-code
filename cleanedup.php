@@ -3,30 +3,37 @@
 // 1. renamed all functions and variables
 // 2. got rid of all dead and test code
 // 3. switch operator in stead of if else statements
+// 4. seperate function to determine address
+// 5. just one function to make everyone happy
 
 function orderPizza($pizzatype, $forWho)
 {
-    echo 'Creating new order... <br>';
-    $toPrint = 'A ';
-    $toPrint .= $pizzatype;
+    $address = findAddress($forWho);
     $totalPrice = calculateCost($pizzatype);
 
+    echo 'Creating new order... <br>';
+    echo  'A ' . $pizzatype . ' pizza should be sent to ' . $forWho . '.';
+    echo '<br>';
+    echo 'The address: ' . $address;
+    echo '<br>';
+    echo 'The bill is €' . $totalPrice . '.<br>';
+    echo 'Order finished.<br><br>';
+}
+
+function findAddress($forWho)
+{
     $address = 'unknown';
     if ($forWho == 'koen') {
         $address = 'a yacht in Antwerp';
+        return $address;
     } elseif ($forWho == 'manuele') {
         $address = 'somewhere in Belgium';
+        return $address;
     } elseif ($forWho == 'students') {
         $address = 'BeCode office';
+        return $address;
     }
-
-    $toPrint .=   ' pizza should be sent to ' . $forWho . ". <br>The address: {$address}.";
-    echo $toPrint;
-    echo '<br>';
-    echo 'The bill is €' . $totalPrice . '.<br>';
-    echo "Order finished.<br><br>";
 }
-
 
 function calculateCost($pizzaType)
 {
@@ -50,17 +57,12 @@ function calculateCost($pizzaType)
     }
 }
 
-function orderPizzaAll()
-{
-    orderPizza('calzone', 'koen');
-    orderPizza('marguerita', 'manuele');
-    orderPizza('golden', 'students');
-}
-
 function make_Allhappy($do_it)
 {
     if ($do_it) {
-        orderPizzaAll();
+        orderPizza('calzone', 'koen');
+        orderPizza('marguerita', 'manuele');
+        orderPizza('golden', 'students');
     }
 }
 
